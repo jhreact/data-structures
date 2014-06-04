@@ -7,6 +7,9 @@ var makeQueue = function(){
 };
 
 var queueMethods = {
+  enqueue: function (value) {
+    this.storage[this.index + this._size++] = value;
+  },
   size: function () { return this._size; }
 };
 
