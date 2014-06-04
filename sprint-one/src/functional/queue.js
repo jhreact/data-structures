@@ -15,7 +15,7 @@ var makeQueue = function(){
   someInstance.dequeue = function(){
     var result = storage[index++];
     delete storage[index - 1];
-    size--;
+    size && size--;
     return result;
   };
 
