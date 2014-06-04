@@ -10,6 +10,12 @@ var queueMethods = {
   enqueue: function (value) {
     this.storage[this.index + this._size++] = value;
   },
+  dequeue: function () {
+    var result = this.storage[this.index];
+    delete this.storage[this.index++];
+    this._size && this._size--;
+    return result;
+  },
   size: function () { return this._size; }
 };
 
