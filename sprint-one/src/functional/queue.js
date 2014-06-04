@@ -9,7 +9,7 @@ var makeQueue = function(){
   // Implement the methods below
 
   someInstance.enqueue = function(value){
-    storage[size++] = value;
+    storage[index + size++] = value;
   };
 
   someInstance.dequeue = function(){
