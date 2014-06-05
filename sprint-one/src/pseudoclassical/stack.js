@@ -9,4 +9,8 @@ Stack.prototype.size = function () {
   return this._size;
 };
 
+Stack.prototype.push = function (value) {
+  this._storage[this._size++] = value;
+}
+
 
