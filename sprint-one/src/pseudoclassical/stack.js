@@ -11,6 +11,11 @@ Stack.prototype.size = function () {
 
 Stack.prototype.push = function (value) {
   this._storage[this._size++] = value;
+};
+
+Stack.prototype.pop = function () {
+  var result = this._storage[this._size];
+  return result;
 }
 
 
