@@ -9,7 +9,10 @@ var makeQueue = function() {
 };
 
 var queueMethods = {
-  size: function() { return this._size;}
-  };
+  size: function() { return this._size; },
+  enqueue: function(value) {
+    this._storage[this._index + this._size++]  = value;
+  }
+};
 
 
