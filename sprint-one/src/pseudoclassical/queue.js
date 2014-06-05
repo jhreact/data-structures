@@ -13,3 +13,8 @@ Queue.prototype.size = function() {
 Queue.prototype.enqueue = function(value) {
   this._storage[this._index + this._size++] = value;
 };
+
+Queue.prototype.dequeue = function() {
+  var result = this._storage[this._index];
+  return result;
+};
