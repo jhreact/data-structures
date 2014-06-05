@@ -15,7 +15,7 @@ var queueMethods = {
   },
   dequeue: function() {
     var result = this._storage[this._index];
-    this.size && this._size--;
+    this._size && this._size--;
     return result;
   }
 };
