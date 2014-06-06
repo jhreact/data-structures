@@ -29,11 +29,14 @@ var makeLinkedList = function(){
     // start at head
     //    check head.value === target, if false update index to next, and repeat
     var index = list.head;
-    while (index.value !== target && index.next) {
-      index = index.next;
+    if (index.value === target) {
+      return true;
+    }
+    while (index.next || index.value === target) {
       if (index.value === target) {
         return true;
       }
+      index = index.next;
     }
     return false;
   };
