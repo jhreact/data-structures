@@ -15,9 +15,6 @@ var makeLinkedList = function(){
   };
 
   list.removeHead = function(){
-    // if head exists
-    //    get the value of next property from head
-    //    update the list.head value
     var oldHead = list.head;
     if (list.head) {
       list.head = list.head.next;
@@ -26,8 +23,6 @@ var makeLinkedList = function(){
   };
 
   list.contains = function(target){
-    // start at head
-    //    check head.value === target, if false update index to next, and repeat
     var index = list.head;
     if (index.value === target) {
       return true;
