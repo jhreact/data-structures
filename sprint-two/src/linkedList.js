@@ -18,9 +18,11 @@ var makeLinkedList = function(){
     // if head exists
     //    get the value of next property from head
     //    update the list.head value
+    var oldHead = list.head;
     if (list.head) {
       list.head = list.head.next;
     }
+    return oldHead ? oldHead.value : oldHead;
   };
 
   list.contains = function(target){
