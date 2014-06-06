@@ -5,9 +5,6 @@ var makeTree = function(value){
   return _.extend(newTree, treeMethods);
 };
 
-
-
-
 var treeMethods = {};
 
 treeMethods.addChild = function(value){
@@ -17,18 +14,16 @@ treeMethods.addChild = function(value){
   this.children.push(makeTree(value));
 };
 
-treeMethods.contains = function(target){
-  // need start off with top node
-  // check if node matches target, return if true
-  // if no children return false
-  // iterate over children
-  //    use contains as the iterator
-  //    use any for main iterator
-  var node = this;
+treeMethods.contains = function(target, node){
+  node = node || this;
   if (node.value === target) {
     return true;
   } else if (!node.children) {
     return false;
+  } else {
+    return _.any(node.children, function(child) {
+      return child.contains(target, child);
+    });
   }
   return false;
 };
