@@ -23,6 +23,9 @@ setPrototype.contains = function(item){
 };
 
 setPrototype.remove = function(item){
+  if (this._storage) {
+    delete this._storage[item];
+  }
 };
 
 /*
