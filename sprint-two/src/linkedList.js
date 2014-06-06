@@ -26,6 +26,16 @@ var makeLinkedList = function(){
   };
 
   list.contains = function(target){
+    // start at head
+    //    check head.value === target, if false update index to next, and repeat
+    var index = list.head;
+    while (index.value !== target && index.next) {
+      index = index.next;
+      if (index.value === target) {
+        return true;
+      }
+    }
+    return false;
   };
 
   return list;
