@@ -18,7 +18,19 @@ treeMethods.addChild = function(value){
 };
 
 treeMethods.contains = function(target){
-
+  // need start off with top node
+  // check if node matches target, return if true
+  // if no children return false
+  // iterate over children
+  //    use contains as the iterator
+  //    use any for main iterator
+  var node = this;
+  if (node.value === target) {
+    return true;
+  } else if (!node.children) {
+    return false;
+  }
+  return false;
 };
 
 
