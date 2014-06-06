@@ -11,7 +11,10 @@ var makeTree = function(value){
 var treeMethods = {};
 
 treeMethods.addChild = function(value){
-
+  if (!this.children) {
+   this.children = [];
+  }
+  this.children.push(makeTree(value));
 };
 
 treeMethods.contains = function(target){
