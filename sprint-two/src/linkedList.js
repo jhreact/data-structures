@@ -5,12 +5,10 @@ var makeLinkedList = function(){
 
   list.addToTail = function(value){
     var node = makeNode(value);
-    if (!list.tail) {
-      list.tail = node;
-    } else {
+    if (list.tail) {
       list.tail.next = node;
-      list.tail = node;
     }
+    list.tail = node;
     if (!list.head) {
       list.head = list.tail;
     }
