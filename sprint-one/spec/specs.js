@@ -34,6 +34,16 @@ define([
 
       verifyClass(instantiator).followsPattern(variant, {}, prototypeOfInstances);
 
+      it('create a ton of stacks', function() {
+        var stacks = [];
+        for (var i = 0; i < 500000; i++) {
+          //stacks.push(stack());
+          stacks.push(variant === 'pseudoclassical' ? new instantiator() : instantiator());
+          // variant === 'pseudoclassical' ? stacks.push(new instantiator()) : stacks.push(instantiator());
+        }
+        expect(true).to.equal(true);
+      });
+
       it('reports a size of zero for a new stack', function() {
         expect(stack.size()).to.equal(0);
       });
@@ -89,77 +99,77 @@ define([
 
   });
 
-  describe("queue", function() {
-    var queue;
-    var instantiator = variant === 'pseudoclassical' ? Queue : makeQueue;
-    var prototypeOfInstances = variant === 'prototypal' && queueMethods;
+  // describe("queue", function() {
+  //   var queue;
+  //   var instantiator = variant === 'pseudoclassical' ? Queue : makeQueue;
+  //   var prototypeOfInstances = variant === 'prototypal' && queueMethods;
 
-    beforeEach(function(){
-      if(variant === 'pseudoclassical'){
-        queue = new instantiator();
-      } else {
-        queue = instantiator();
-      }
-    });
+  //   beforeEach(function(){
+  //     if(variant === 'pseudoclassical'){
+  //       queue = new instantiator();
+  //     } else {
+  //       queue = instantiator();
+  //     }
+  //   });
 
-    describe('queue shared behavior', function(){
+  //   describe('queue shared behavior', function(){
 
-      verifyClass(instantiator).followsPattern(variant, {}, prototypeOfInstances);
+  //     verifyClass(instantiator).followsPattern(variant, {}, prototypeOfInstances);
 
-      it('reports a size of zero for a new queue', function() {
-        expect(queue.size()).to.equal(0);
-      });
+  //     it('reports a size of zero for a new queue', function() {
+  //       expect(queue.size()).to.equal(0);
+  //     });
 
-      it('reports a size of 2 after adding two items', function() {
-        queue.enqueue('a');
-        queue.enqueue('b');
-        expect(queue.size()).to.equal(2);
-      });
+  //     it('reports a size of 2 after adding two items', function() {
+  //       queue.enqueue('a');
+  //       queue.enqueue('b');
+  //       expect(queue.size()).to.equal(2);
+  //     });
 
-      it('does not error when removing from an empty queue', function() {
-        expect(function(){ queue.dequeue(); }).not.throws();
-      });
+  //     it('does not error when removing from an empty queue', function() {
+  //       expect(function(){ queue.dequeue(); }).not.throws();
+  //     });
 
-      it('reports a size of 1 after adding two items and removing one', function() {
-        queue.enqueue('a');
-        queue.enqueue('b');
-        queue.dequeue();
-        expect(queue.size()).to.equal(1);
-      });
+  //     it('reports a size of 1 after adding two items and removing one', function() {
+  //       queue.enqueue('a');
+  //       queue.enqueue('b');
+  //       queue.dequeue();
+  //       expect(queue.size()).to.equal(1);
+  //     });
 
-      it('reports a size of 0 after removing more items than were added', function() {
-        queue.enqueue('a');
-        queue.dequeue();
-        queue.dequeue();
-        expect(queue.size()).to.equal(0);
-      });
+  //     it('reports a size of 0 after removing more items than were added', function() {
+  //       queue.enqueue('a');
+  //       queue.dequeue();
+  //       queue.dequeue();
+  //       expect(queue.size()).to.equal(0);
+  //     });
 
-      it('allows sequentially adding and removing items', function() {
-        queue.enqueue('a');
-        expect(queue.dequeue()).to.equal('a');
-        queue.enqueue('b');
-        expect(queue.dequeue()).to.equal('b');
-      });
+  //     it('allows sequentially adding and removing items', function() {
+  //       queue.enqueue('a');
+  //       expect(queue.dequeue()).to.equal('a');
+  //       queue.enqueue('b');
+  //       expect(queue.dequeue()).to.equal('b');
+  //     });
 
-    });
+  //   });
 
-    describe('queue-specific behavior', function(){
-      it('removes the least recently added of two items', function() {
-        queue.enqueue('a');
-        queue.enqueue('b');
-        expect(queue.dequeue()).to.equal('a');
-      });
+  //   describe('queue-specific behavior', function(){
+  //     it('removes the least recently added of two items', function() {
+  //       queue.enqueue('a');
+  //       queue.enqueue('b');
+  //       expect(queue.dequeue()).to.equal('a');
+  //     });
 
-      it('removes the oldest item, after newer items have already been added and removed', function() {
-        queue.enqueue('a');
-        queue.enqueue('b');
-        queue.dequeue();
-        queue.enqueue('c');
-        expect(queue.dequeue()).to.equal('b');
-      });
-    });
+  //     it('removes the oldest item, after newer items have already been added and removed', function() {
+  //       queue.enqueue('a');
+  //       queue.enqueue('b');
+  //       queue.dequeue();
+  //       queue.enqueue('c');
+  //       expect(queue.dequeue()).to.equal('b');
+  //     });
+  //   });
 
-  });
+  // });
 
 
   window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run();
