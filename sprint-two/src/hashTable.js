@@ -23,7 +23,13 @@ HashTable.prototype.retrieve = function(k){
 };
 
 HashTable.prototype.remove = function(k){
-
+  var i = getIndexBelowMaxForKey(k, this._limit);
+  this._storage[i].forEach(function(value, index, collection) {
+    if (value[0] === k) {
+      // collection[index] = null;
+      value[1] = null;
+    }
+  });
 };
 
 
