@@ -43,7 +43,13 @@ makeBinarySearchTree.methods.contains = function(value) {
 };
 
 makeBinarySearchTree.methods.depthFirstLog = function(callback) {
-
+  callback(this.value);
+  if (this.left) {
+    this.left.depthFirstLog(callback);
+  }
+  if (this.right) {
+    this.right.depthFirstLog(callback);
+  }
 };
 
 
