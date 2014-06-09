@@ -1,29 +1,35 @@
-var Node = function(value, edge) {
-  this.value = value;
-  this.edge = edge;
-};
-
 var Graph = function(){
-  this.nodes = [];
-  this.edges = undefined;
+  // Assumes node values will be unique
+  // Ideally, we'd have a separate node class that could be reused across
+  // multiple datatypes, but that's a bit overzealous at the current time.
+  // We'll make the edges a node property instead of an inherent property of
+  // the graph
+  this.nodes = {};
 };
 
 Graph.prototype.addNode = function(newNode, toNode){
-  // here, newNode is actually a value, which we shove inside a Node object
-  var node = new Node(newNode);
-  this.nodes.push(node);
+  // Assumes addNode will not be called on existing nodes
+  this.nodes[newNode] = toNode ? [toNode]: [];
 };
 
 Graph.prototype.contains = function(node){
-  return _.any(this.nodes, function(graphNode) {
-    return graphNode.value === node;
+  return _.any(this.nodes, function(val, key) {
+    return node === key;
   });
 };
 
 Graph.prototype.removeNode = function(node){
+  for (var i=0; i < this.nodes.length; i++) {
+    testNode = this.nodes[i];
+    if (testNode.value === node) {
+      delete this.nodes[i];
+    }
+  }
 };
 
 Graph.prototype.getEdge = function(fromNode, toNode){
+  //for (var i=0; i <
+  return fromNode.connectedTo.value === toNode;
 };
 
 Graph.prototype.addEdge = function(fromNode, toNode){
