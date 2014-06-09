@@ -45,6 +45,15 @@ Graph.prototype.addEdge = function(fromNode, toNode){
 };
 
 Graph.prototype.removeEdge = function(fromNode, toNode){
+  var delIdx;
+  _.each(this.nodes[fromNode], function(node, idx) {
+    console.log(node, idx, toNode);
+    if (node === toNode) {
+      // Don't want to modify in place while looping
+      delIdx = idx;
+    }
+  });
+  delete this.nodes[fromNode][delIdx];
 };
 
 /*
