@@ -12,10 +12,14 @@ Graph.prototype.addNode = function(newNode, toNode){
   var nodeList = _.keys(this.nodes);
   if (nodeList.length === 1) {
     firstNode = nodeList[0];
-    this.nodes[newNode] = [firstNode];
-    this.nodes[firstNode] = [newNode];
+    this.nodes[newNode] = [];
+    this.addEdge(newNode, firstNode);
+    this.addEdge(firstNode, newNode);
   } else {
-    this.nodes[newNode] = toNode ? [toNode]: [];
+    this.nodes[newNode] = [];
+    if (toNode) {
+      this.addEdge(newNode, toNode);
+    }
   }
 };
 
@@ -37,6 +41,7 @@ Graph.prototype.getEdge = function(fromNode, toNode){
 };
 
 Graph.prototype.addEdge = function(fromNode, toNode){
+  this.nodes[fromNode].push(toNode);
 };
 
 Graph.prototype.removeEdge = function(fromNode, toNode){
