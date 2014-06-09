@@ -19,12 +19,7 @@ Graph.prototype.contains = function(node){
 };
 
 Graph.prototype.removeNode = function(node){
-  for (var i=0; i < this.nodes.length; i++) {
-    testNode = this.nodes[i];
-    if (testNode.value === node) {
-      delete this.nodes[i];
-    }
-  }
+  delete this.nodes[node];
 };
 
 Graph.prototype.getEdge = function(fromNode, toNode){
