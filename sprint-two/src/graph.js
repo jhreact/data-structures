@@ -9,7 +9,14 @@ var Graph = function(){
 
 Graph.prototype.addNode = function(newNode, toNode){
   // Assumes addNode will not be called on existing nodes
-  this.nodes[newNode] = toNode ? [toNode]: [];
+  var nodeList = _.keys(this.nodes);
+  if (nodeList.length === 1) {
+    firstNode = nodeList[0];
+    this.nodes[newNode] = [firstNode];
+    this.nodes[firstNode] = [newNode];
+  } else {
+    this.nodes[newNode] = toNode ? [toNode]: [];
+  }
 };
 
 Graph.prototype.contains = function(node){
@@ -23,8 +30,10 @@ Graph.prototype.removeNode = function(node){
 };
 
 Graph.prototype.getEdge = function(fromNode, toNode){
-  //for (var i=0; i <
-  return fromNode.connectedTo.value === toNode;
+  // Assumes we're not calling this on a node that doesn't exist
+  return _.any(this.nodes[fromNode], function(node) {
+    return node === toNode;
+  });
 };
 
 Graph.prototype.addEdge = function(fromNode, toNode){
